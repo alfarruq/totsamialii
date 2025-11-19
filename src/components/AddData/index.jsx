@@ -19,6 +19,8 @@ function AddMebmer() {
 
     let navigate = useNavigate()
 
+    
+
 
     async function postProduct() {
         let response = await fetch('https://66f68256436827ced9776af5.mockapi.io/market', {
