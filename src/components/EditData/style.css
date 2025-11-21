@@ -1,0 +1,22 @@
+
+
+.datas{
+    display: flex;
+    flex-direction: column;
+    gap: 13px;
+
+    width: 50%;
+    margin: 0 auto;
+}
+
+.datas input{
+    outline: none;
+    padding: 10px 15px;
+    border-radius: 10px;
+    border: 1px solid rgb(217, 215, 215);
+}
+
+.adddata h2{
+    text-align: center;
+    margin-bottom: 20px;
+}

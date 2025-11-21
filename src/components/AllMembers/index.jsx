@@ -65,7 +65,7 @@ function AllMembers() {
                             <td>{c.count}</td>
                             <td>{c.price_count}</td>
                             <td style={{ display: 'flex', gap: '16px' }} >
-                                <button style={{ border: 'none' }} className="status active" >Edit</button>
+                                <Link to={`/editmember/${c.id}`} ><button style={{ border: 'none' }} className="status active" >Edit</button></Link>
                                 <button onClick={() => deleteProduct(c.id)} style={{ border: 'none' }} className="status inactive"  >Delete</button>
                             </td>
                         </tr>

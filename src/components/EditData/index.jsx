@@ -1,13 +1,13 @@
 
 
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useNavigate, useParams } from 'react-router-dom';
 import './style.css'
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 
 
 
-function AddMebmer() {
+function EditData() {
     const [data, setData] = useState({
         name: '',
         img: [],
@@ -19,12 +19,23 @@ function AddMebmer() {
 
     let navigate = useNavigate()
 
+    const { id } = useParams()
+
+    useEffect(() => {
+        async function get() {
+            let response = await fetch(`https://66f68256436827ced9776af5.mockapi.io/market/${id}`)
+            let data = await response.json()
+            setData(data)
+        }
+        get()
+    }, [])
+
 
 
 
     async function postProduct() {
-        let response = await fetch('https://66f68256436827ced9776af5.mockapi.io/market', {
-            method: 'POST',
+        let response = await fetch('https://66f68256436827ced9776af5.mockapi.io/market/' + id, {
+            method: 'PUT',
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify(data)
         })
@@ -46,7 +57,7 @@ function AddMebmer() {
             <Link to={'/'} >
                 <button>Back</button>
             </Link>
-            <h2>Add Member</h2>
+            <h2>Edit Member</h2>
 
             <div className="datas">
                 <input required value={data?.name} onChange={(e) => setData({ ...data, name: e.target.value })} placeholder='name' type="text" />
@@ -54,10 +65,10 @@ function AddMebmer() {
                 <input value={data?.price} onChange={(e) => setData({ ...data, price: e.target.value })} placeholder='price' type="text" />
                 <input value={data?.count} onChange={(e) => setData({ ...data, count: e.target.value })} placeholder='count' type="text" />
                 <input value={data?.sale} onChange={(e) => setData({ ...data, sale: e.target.value })} placeholder='sale' type="text" />
-                <button onClick={postProduct} >Add data</button>
+                <button onClick={postProduct} >Edit data</button>
             </div>
         </div>
     );
 }
 
-export default AddMebmer;
+export default EditData;
